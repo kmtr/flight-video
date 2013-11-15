@@ -1,0 +1,11 @@
+extends SpecLayout
+
+mixin testCase(test)
+  script(src='../bower_components/requirejs/require.js')
+  script
+    require.config({
+      urlArgs: "v=" + (new Date()).getTime(),
+      baseUrl: '../',
+      paths: {test: '#{test}' }
+    });
+    require(['test'], function(){mocha.run()});
